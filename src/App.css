@@ -146,3 +146,20 @@ body.dark-mode {
 .dark-mode-toggle button:hover {
   background-color: #222;
 }
+
+/* === Light Mode Background Fix === */
+body:not(.dark-mode) {
+  background-color: #fffbf5;
+}
+.dark-mode-toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+.container {
+  padding: 30px;
+}
+.filters button:hover {
+  background-color: #ff1493;
+  transform: scale(1.05);
+}
