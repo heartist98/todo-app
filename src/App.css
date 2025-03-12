@@ -126,3 +126,23 @@ body.dark-mode {
 .dark-mode-toggle button:hover {
   background-color: #222;
 }
+.dark-mode .filters button,
+.dark-mode-toggle button {
+  background-color: #555;
+  color: white;
+  border: 1px solid #777;
+}
+
+.dark-mode .filters .active {
+  background-color: #ff69b4;
+  color: white;
+}
+
+.dark-mode-toggle button {
+  background-color: #444;
+  color: white;
+}
+
+.dark-mode-toggle button:hover {
+  background-color: #222;
+}
