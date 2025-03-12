@@ -1,38 +1,72 @@
-import React, { useState } from "react";
+import { useState } from 'react';
 
-export default function TodoList() {
-    const [tasks, setTasks] = useState([]);
-    const [task, setTask] = useState("");
+const TodoList = () => {
+  const [tasks, setTasks] = useState([]);
+  const [newTask, setNewTask] = useState('');
+  const [editingId, setEditingId] = useState(null);
+  const [editedText, setEditedText] = useState('');
 
-    const removeTask = (index) => {
-        setTasks(tasks.filter((_, i) => i !== index));
-    };
+  const addTask = () => {
+    if (newTask.trim()) {
+      setTasks([...tasks, { id: Date.now(), text: newTask, completed: false }]);
+      setNewTask('');
+    }
+  };
 
-    const addTask = () => {
-        if (task.trim() === "") return;
-        setTasks([...tasks, task]);
-        setTask("");
-    };
+  const deleteTask = (id) => {
+    setTasks(tasks.filter(task => task.id !== id));
+  };
 
-    return (
-        <div className="app-container">
-            <h2>Todo List</h2>
-            <div className="todo-container">
+  // ✅ Edit task logic
+  const startEditing = (id, text) => {
+    setEditingId(id);
+    setEditedText(text);
+  };
+
+  const saveEditedTask = (id) => {
+    setTasks(tasks.map(task => 
+      task.id === id ? { ...task, text: editedText } : task
+    ));
+    setEditingId(null);
+    setEditedText('');
+  };
+
+  return (
+    <div className="container">
+      <h1>My Todo App</h1>
+      <div>
+        <input
+          type="text"
+          value={newTask}
+          onChange={(e) => setNewTask(e.target.value)}
+          placeholder="Add a new task"
+        />
+        <button onClick={addTask}>Add</button>
+      </div>
+      <ul>
+        {tasks.map(task => (
+          <li key={task.id}>
+            {editingId === task.id ? (
+              <>
                 <input
-                    type="text"
-                    value={task}
-                    onChange={(e) => setTask(e.target.value)}
-                    placeholder="Add a new task"
+                  type="text"
+                  value={editedText}
+                  onChange={(e) => setEditedText(e.target.value)}
                 />
-                <button onClick={addTask}>Add</button>
-                <ul>
-                    {tasks.map((t, index) => (
-                        <li key={index}>
-                            {t} <button onClick={() => removeTask(index)}>Remove</button>
-                        </li>
-                    ))}
-                </ul>
-            </div>
-        </div>
-    );
-}
+                <button onClick={() => saveEditedTask(task.id)}>Save</button>
+              </>
+            ) : (
+              <>
+                {task.text}
+                <button onClick={() => startEditing(task.id, task.text)}>Edit</button>
+                <button onClick={() => deleteTask(task.id)} className="delete-btn">Delete</button>
+              </>
+            )}
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+};
+
+export default TodoList;
