@@ -1,42 +1,128 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fffbf5;
+  color: #333;
+  transition: background-color 0.3s ease;
+}
+
+.container {
+  width: 100%;
+  max-width: 400px;
+  margin: 2rem auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+/* Heading */
+h1 {
+  color: #ff69b4;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+/* Add Task */
+.add-task {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 1rem;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.add-task input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ffb6c1;
+  border-radius: 8px;
+  outline: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.add-task button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s ease;
 }
 
-.card {
-  padding: 2em;
+.add-task button:hover {
+  background-color: #ff1493;
 }
 
-.read-the-docs {
-  color: #888;
+/* Task List */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  background-color: #fff0f5;
+  padding: 10px;
+  margin-bottom: 5px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.completed {
+  text-decoration: line-through;
+  color: #ccc;
+}
+
+button {
+  background-color: #ff69b4;
+  color: white;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s ease;
+}
+
+button:hover {
+  background-color: #ff1493;
+}
+
+/* Filter Buttons */
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 1rem;
+}
+
+.filters button {
+  background-color: #ffb6c1;
+  color: white;
+}
+
+.filters .active {
+  background-color: #ff69b4;
+}
+
+/* Dark Mode */
+body.dark-mode {
+  background-color: #1a1a1a;
+  color: #f1f1f1;
+}
+
+.dark-mode .container {
+  background-color: #333;
+}
+
+.dark-mode .completed {
+  color: #777;
+}
+
+.dark-mode-toggle button {
+  margin-top: 1rem;
+  background-color: #444;
+}
+
+.dark-mode-toggle button:hover {
+  background-color: #222;
 }
